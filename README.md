@@ -1,1 +1,1 @@
-# PixelRacer
+Pixel Racer is a car racing game
