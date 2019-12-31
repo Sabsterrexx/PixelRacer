@@ -19,8 +19,10 @@ player_car = PlayerCar()
 
 ai = AiCar()
 ai.generate_random_car()
+
 ai2 = AiCar()
 ai2.generate_random_car()
+
 ai3 = AiCar()
 ai3.generate_random_car()
 
@@ -130,7 +132,12 @@ while True:
 
 
         obstacle.animate(screen)
+        obstacle.collision(player_car)
+        
         obstacle2.animate(screen)
+        obstacle2.collision(player_car)
+
         obstacle3.animate(screen)
+        obstacle3.collision(player_car)
 
         pygame.display.update()

@@ -18,6 +18,7 @@ class PlayerCar:
     
     def render(self):
         self.car = pygame.transform.scale(self.car,(self.width,self.height))
+        self.rect = self.car.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
         screen.blit(self.car,self.rect)
