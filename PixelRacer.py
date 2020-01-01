@@ -1,3 +1,5 @@
+#--------------------- Import Required Libraries -----------------------#
+
 import pygame
 import constants
 import sys
@@ -7,6 +9,9 @@ from obstacle import Obstacle
 from screenText import ScreenText
 from AiCar import AiCar
 
+
+#-------- Create All Game Objects ----------------------#
+
 screenTitle = ScreenText()
 screenTitle.text = "Press 'P' to play"
 
@@ -14,6 +19,11 @@ screenTitle.text = "Press 'P' to play"
 gameTitle = ScreenText()
 gameTitle.text = "Pixel Racer"
 gameTitle.y -= screenTitle.size + 20
+
+endTitle = ScreenText()
+endTitle.color = constants.colors['GREEN']
+endTitle.text = "Game Over"
+endTitle.y -= endTitle.size + 20
 
 player_car = PlayerCar()
 
@@ -52,10 +62,15 @@ pygame.mixer.init()
 pygame.mixer.music.load("Sounds/car acceleration sound effect.mp3")
 pygame.mixer.music.play(-1)
 
+
 screen = constants.initalize()
 
+end = False
 playing = False
 start = True
+
+
+#--------------------------Main Loop:----------------------------------------------#
 
 while True:
 
@@ -132,12 +147,33 @@ while True:
 
 
         obstacle.animate(screen)
-        obstacle.collision(player_car)
         
         obstacle2.animate(screen)
-        obstacle2.collision(player_car)
 
         obstacle3.animate(screen)
-        obstacle3.collision(player_car)
+
+        if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
+            playing = False
+            end = True
 
         pygame.display.update()
+
+
+
+        #-------------------------End Screen Loop: -------------------------#
+
+
+        while end:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+
+
+            screen.fill(constants.colors["YELLOW"])
+            endTitle.write()
+            pygame.display.update()
+
+
+#-----------------------End of code -------------------------------#

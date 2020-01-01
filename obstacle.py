@@ -29,12 +29,11 @@ class Obstacle:
         screen.blit(self.image,self.rect)
         self.y += 5
 
-    #Function to handle collision between car and obstacle
+    #Function to handle collision between player car and obstacle
 
     def collision(self,car):
         if self.rect.colliderect(car.rect):
             print(time.time())
-            print(car.rect)
-            print(self.rect)
+            return True
         else:
-            print("No collision")
+            print('No collision')
