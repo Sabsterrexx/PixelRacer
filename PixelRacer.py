@@ -135,15 +135,15 @@ while True:
 
         ai.render()
         ai.border_collision()
-        ai.race(constants.distance_travelled,constants.direction)
+        ai.race()
 
         ai2.render()
         ai2.border_collision()
-        ai2.race(constants.distance_travelled,constants.direction)
+        ai2.race()
 
         ai3.render()
         ai3.border_collision()
-        ai3.race(constants.distance_travelled,constants.direction)
+        ai3.race()
 
 
         obstacle.animate(screen)
@@ -152,28 +152,30 @@ while True:
 
         obstacle3.animate(screen)
 
-        if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
-            playing = False
-            end = True
+        # Detecting if the car collides with the obstacles:
+
+        # if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
+        #     playing = False
+        #     end = True
 
         pygame.display.update()
 
 
 
-        #-------------------------End Screen Loop: -------------------------#
+        # #-------------------------End Screen Loop: -------------------------#
 
 
-        while end:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+        # while end:
+        #     for event in pygame.event.get():
+        #         if event.type == pygame.QUIT:
+        #             pygame.quit()
+        #             sys.exit()
 
 
 
-            screen.fill(constants.colors["YELLOW"])
-            endTitle.write()
-            pygame.display.update()
+        #     screen.fill(constants.colors["YELLOW"])
+        #     endTitle.write()
+        #     pygame.display.update()
 
 
 #-----------------------End of code -------------------------------#
