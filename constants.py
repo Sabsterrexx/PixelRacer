@@ -12,8 +12,17 @@ clock = pygame.time.Clock()
 fps  = 60
 cx = 0
 cy = 0
+
+#ai car variables:
 distance_travelled = 0
 direction = random.randint(1,2)
+
+#setting up the joystick variables:
+joyUp = 13
+joyDown = 14
+joyLeft = 15
+joyRight = 16
+joyStart = 9
 
 #the colors used in the game are set to a bunch of key (color name as a string) and value (color's rgb code as a tuple) pairs in a dictionary
 colors = {"WHITE": (255,255,255) , "GREEN": (0,102,0) , "RED": (255,0,0), "BLUE": (0,0,255), "BLACK": (0,0,0),"GREY": (55,55,55),"YELLOW": (255,255,0)}

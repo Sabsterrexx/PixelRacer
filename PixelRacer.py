@@ -8,7 +8,7 @@ from roadLine import RoadLine
 from obstacle import Obstacle
 from screenText import ScreenText
 from AiCar import AiCar
-
+import joyStickHandler
 
 #-------- Create All Game Objects ----------------------#
 
@@ -57,6 +57,7 @@ obstacle3.image = pygame.image.load("Obstacles/Road-Block.png")
 obstacle3.height += 15
 obstacle3.width += 40
 
+joyStickHandler.initJoysticks()
 
 pygame.mixer.init()
 pygame.mixer.music.load("Sounds/car acceleration sound effect.mp3")
@@ -84,6 +85,10 @@ while True:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
+                    start = False
+                    playing = True
+            if event.type == pygame.JOYBUTTONDOWN:
+                if event.button == constants.joyStart:
                     start = False
                     playing = True
     
@@ -119,6 +124,19 @@ while True:
             elif event.type == pygame.KEYUP:
                 player_car.dy = 0
                 player_car.dx = 0
+            #coding the controllers:
+            elif event.type == pygame.JOYBUTTONDOWN:
+                if event.button == constants.joyUp:
+                    player_car.dy = -player_car.speed                   
+                elif event.button == constants.joyDown:
+                    player_car.dy = player_car.speed
+                elif event.button == constants.joyLeft:
+                    player_car.dx = -player_car.speed
+                elif event.button == constants.joyRight:
+                    player_car.dx = player_car.speed            
+            elif event.type == pygame.JOYBUTTONUP:
+                    player_car.dx = 0
+                    player_car.dy = 0
 
         constants.clock.tick(constants.fps)
 
@@ -154,9 +172,9 @@ while True:
 
         # Detecting if the car collides with the obstacles:
 
-        # if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
-        #     playing = False
-        #     end = True
+        if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
+            playing = False
+            end = True
 
         pygame.display.update()
 
@@ -165,17 +183,17 @@ while True:
         # #-------------------------End Screen Loop: -------------------------#
 
 
-        # while end:
-        #     for event in pygame.event.get():
-        #         if event.type == pygame.QUIT:
-        #             pygame.quit()
-        #             sys.exit()
+        while end:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
 
 
 
-        #     screen.fill(constants.colors["YELLOW"])
-        #     endTitle.write()
-        #     pygame.display.update()
+            screen.fill(constants.colors["YELLOW"])
+            endTitle.write()
+            pygame.display.update()
 
 
 #-----------------------End of code -------------------------------#
