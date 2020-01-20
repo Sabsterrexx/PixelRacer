@@ -33,13 +33,13 @@ endTitle.y -= endTitle.size + 20
 player_car = PlayerCar()
 
 ai = AiCar()
-ai.generate_random_car()
+ai.generate_random_car(0, constants.screenWidth/3)
 
 ai2 = AiCar()
-ai2.generate_random_car()
+ai2.generate_random_car( constants.screenWidth/3, constants.screenWidth * 2/3)
 
 ai3 = AiCar()
-ai3.generate_random_car()
+ai3.generate_random_car(constants.screenWidth * 2/3, constants.screenWidth)
 
 roadLine1 = RoadLine()
 
@@ -163,15 +163,15 @@ while True:
 
         ai.render()
         ai.border_collision()
-        ai.race()
+        ai.race(ai2, ai3)
 
         ai2.render()
         ai2.border_collision()
-        ai2.race()
+        ai2.race(ai, ai3)
 
         ai3.render()
         ai3.border_collision()
-        ai3.race()
+        ai3.race(ai, ai2)
 
         obstacle.animate(screen)
         
@@ -179,22 +179,22 @@ while True:
 
         obstacle3.animate(screen)
 
-        # aiCars = [ai,ai2,ai3]
+        aiCars = [ai,ai2,ai3]
 
-        # for car in aiCars:
+        #  for car in aiCars:
         #     for otherCar in aiCars:
         #         if car.rect.colliderect(otherCar.rect) or car.rect.colliderect(player_car.rect):
         #             car.dx = -car.dx
-        #             #car.dy = -car.dy
-        #             # otherCar.dx = -otherCar.dx
-        #             # otherCar.dy = -otherCar.dy
+                    #car.dy = -car.dy
+                    # otherCar.dx = -otherCar.dx
+                    # otherCar.dy = -otherCar.dy
         
         # Detecting if the car collides with the obstacles:
 
-        if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
-            playing = False
-            end = True
-            constants.endTime = int(time.perf_counter() - constants.startTime)
+        # if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
+        #     playing = False
+        #     end = True
+        #     constants.endTime = int(time.perf_counter() - constants.startTime)
 
         pygame.display.update()
 
