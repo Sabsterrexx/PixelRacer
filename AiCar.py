@@ -5,41 +5,6 @@ import random
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class AiCar(PlayerCar):
 
 

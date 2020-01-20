@@ -13,6 +13,9 @@ fps  = 60
 cx = 0
 cy = 0
 
+startTime = 0
+endTime = 0
+
 #ai car variables:
 distance_travelled = 0
 direction = random.randint(1,2)
