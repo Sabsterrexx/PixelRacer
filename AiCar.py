@@ -56,10 +56,7 @@ class AiCar(PlayerCar):
             self.dx *= -1
             self.dy *= -1
 
-        # if  self.rect.colliderect(ai1.rect):
-        #     self.dx += 1
-        # elif  self.rect.colliderect(ai2.rect):
-        #     self.dx += 1
+        
         #making the car move:
         self.move()
 
