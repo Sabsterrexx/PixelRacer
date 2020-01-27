@@ -6,7 +6,6 @@ screen = constants.initalize()
 class PlayerCar:
     def __init__(self):
         self.x = constants.cx
-        self.y = constants.cy
         self.speed = 5
         self.dy = 0
         self.dx = 0
@@ -15,6 +14,8 @@ class PlayerCar:
         self.height = 100
         self.car = pygame.transform.rotate(self.image,90)
         self.rect = self.car.get_rect()
+        self.y = constants.screenHeight - self.height
+
     
     def render(self):
         self.car = pygame.transform.scale(self.car,(self.width,self.height))

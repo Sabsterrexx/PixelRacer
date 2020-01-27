@@ -93,6 +93,7 @@ while True:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
+                    end = False
                     start = False
                     playing = True
             if event.type == pygame.JOYBUTTONDOWN:
@@ -148,7 +149,15 @@ while True:
                     player_car.dx = 0
                     player_car.dy = 0
 
+        timerTitle.y = timerTitle.size 
+
+        timerTitle.color = constants.colors["WHITE"]
+
         constants.clock.tick(constants.fps)
+
+        constants.endTime = int(time.perf_counter() - constants.startTime)
+
+        timerTitle.text = str(constants.endTime)
 
         screen.fill(constants.colors["GREEN"])
         pygame.draw.rect(screen,constants.colors["GREY"],(50,0,constants.screenWidth-100,constants.screenHeight),0)
@@ -163,15 +172,15 @@ while True:
 
         ai.render()
         ai.border_collision()
-        ai.race(ai2, ai3)
+        ai.race()
 
         ai2.render()
         ai2.border_collision()
-        ai2.race(ai, ai3)
+        ai2.race()
 
         ai3.render()
         ai3.border_collision()
-        ai3.race(ai, ai2)
+        ai3.race()
 
         obstacle.animate(screen)
         
@@ -179,22 +188,15 @@ while True:
 
         obstacle3.animate(screen)
 
-        aiCars = [ai,ai2,ai3]
+        timerTitle.write()
 
-        #  for car in aiCars:
-        #     for otherCar in aiCars:
-        #         if car.rect.colliderect(otherCar.rect) or car.rect.colliderect(player_car.rect):
-        #             car.dx = -car.dx
-                    #car.dy = -car.dy
-                    # otherCar.dx = -otherCar.dx
-                    # otherCar.dy = -otherCar.dy
-        
-        # Detecting if the car collides with the obstacles:
+        #Detecting if the car collides with the obstacles:
 
-        # if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
-        #     playing = False
-        #     end = True
-        #     constants.endTime = int(time.perf_counter() - constants.startTime)
+        if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
+            playing = False
+            end = True
+            
+            constants.endTime = int(time.perf_counter() - constants.startTime)
 
         pygame.display.update()
 
@@ -213,13 +215,18 @@ while True:
                         start = True
                         end = False
 
+
+            timerTitle.color = constants.colors["GREEN"]
+
+            timerTitle.y = constants.cy + timerTitle.size 
+
             timerTitle.text = "You lasted " + str(constants.endTime) + " seconds."
 
             #resetting everything
             obstacle.y = obstacle.height
             obstacle2.y = obstacle2.height
             obstacle3.y = obstacle3.height
-            player_car.y = constants.cy
+            player_car.y = constants.screenHeight - player_car.height
             player_car.x = constants.cx
 
             #writing text to end screen

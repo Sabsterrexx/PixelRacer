@@ -20,17 +20,16 @@ class AiCar(PlayerCar):
         self.x = min_x
 
 
-    # ---------------------Code that does not work properly (Car moves erratically) (No syntax errors)-----------------#
 
 
     #------------------------------------------------ Function to drive itself: -------------------------------------- #
 
-    def race(self, ai1, ai2):
+    def race(self):
  
         self.frames = (self.frames +1 ) % 100
 
         #if self.x >= constants.screenWidth-55 or self.y >= constants.screenHeight-105 or self.x == 0 or self.y==0:
-        if self.x >= self.max_x-55 or self.y >= constants.screenHeight-105 or self.x <= self.min_x or self.y==0:
+        if self.x >= self.max_x-55 or self.x <= 2*self.min_x or self.y >= constants.screenHeight-105  or self.y==0:
             #reset the variables
             self.dx = 0
             self.dy = 0

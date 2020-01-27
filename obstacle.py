@@ -12,7 +12,7 @@ class Obstacle:
         self.width = 50
         self.height = 50
         self.x = random.randint(self.width,constants.screenWidth - self.width)
-        self.y = self.height   
+        self.y = self.height - 50   
         self.image = pygame.image.load("Obstacles/Traffic-Cone.png")    
         self.rect = self.image.get_rect() 
     
