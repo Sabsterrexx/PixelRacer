@@ -15,6 +15,7 @@ class PlayerCar:
         self.car = pygame.transform.rotate(self.image,90)
         self.rect = self.car.get_rect()
         self.y = constants.screenHeight - self.height
+        self.lives  = 3
 
     
     def render(self):

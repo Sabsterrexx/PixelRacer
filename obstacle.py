@@ -33,7 +33,6 @@ class Obstacle:
 
     def collision(self,car):
         if self.rect.colliderect(car.rect):
-            print(time.time())
+            self.y = self.height-50
             return True
-        else:
-            print('No collision')
+  

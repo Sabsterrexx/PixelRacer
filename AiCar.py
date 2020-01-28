@@ -10,7 +10,7 @@ class AiCar(PlayerCar):
 
     # Function to generate random car:
     def generate_random_car(self, min_x, max_x):
-        car_choice = random.randint(0,11)
+        car_choice = random.randint(0,10)
         self.image = pygame.image.load("Car_Images/" + constants.car_images[car_choice])
         self.car = pygame.transform.rotate(self.image,90)
         self.direction = random.randint(1,2)
