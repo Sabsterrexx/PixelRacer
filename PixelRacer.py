@@ -19,7 +19,6 @@ import joyStickHandler
 #-------- Create All Game Objects ----------------------#
 
 
-
 #creating the start screen title
 screenTitle = ScreenText()
 screenTitle.text = "Press 'P' or 'Start' to play"
@@ -96,8 +95,10 @@ obstacle3.width += 40
 joyStickHandler.initJoysticks()
 
 #generating the sounds
+pygame.init()
+
 pygame.mixer.init()
-pygame.mixer.music.load("Sounds/car acceleration sound effect.mp3")
+pygame.mixer.music.load("Sounds/car.mp3")
 pygame.mixer.music.play(-1)
 
 #creating a screen variable with the screen constants
@@ -254,6 +255,8 @@ while True:
 
         if obstacle.collision(player_car) or obstacle2.collision(player_car) or obstacle3.collision(player_car):
             int(player_car.lives) 
+            pygame.mixer.Channel(2).play(pygame.mixer.Sound('Sounds/Loud_Bang.ogg'))
+
             player_car.lives -= 1
             if player_car.lives == 0:
                 playing = False
